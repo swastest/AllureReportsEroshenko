@@ -15,4 +15,12 @@ public class SelenideWithLabels {
 void tesTest(){
 
 }
+
+@Test
+@DisplayName("Параметрайз") //В отчете отображаются введенные параметры
+void ParametersTest (){
+    Allure.parameter( "Регион", "Москвоская Облась");
+    Allure.parameter("Город", "Москва");
+}
+
 }
