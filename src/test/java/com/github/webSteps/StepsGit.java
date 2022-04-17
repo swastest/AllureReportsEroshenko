@@ -38,7 +38,7 @@ public class StepsGit {
     @Step("Проверка ISSUE_NUMBER # + {issueNumber}")
     public StepsGit assertsIssueNumber(String issueNumber){
         $(withText("#" + issueNumber)).should(Condition.exist);
-        addAttachScreenshot();
+        addAttachScreenshot(); // вот сюда
         return this;
     }
 
