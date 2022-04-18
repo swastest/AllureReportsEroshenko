@@ -8,14 +8,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static io.qameta.allure.Allure.step;
 
 public class UsersAuthWithAnnotatedStepsTest {
     @BeforeAll
-    static void Config(){
+    static void config(){
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl ="http://users.bugred.ru";
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -34,7 +30,7 @@ public class UsersAuthWithAnnotatedStepsTest {
     @Link(value = "Тестовая площадка для тренировки", url = "http://users.bugred.ru")
     @DisplayName("Авторизация существующих пользователей")
     @ParameterizedTest (name = "Авторизация существующих пользователей")
-      void AuthUsers(String login, String password, String userName){
+      void authUsers(String login, String password, String userName){
         Allure.parameter("Логин", login);
         Allure.parameter("Пароль",password);
         Allure.parameter("Имя пользователя",userName);
@@ -48,4 +44,5 @@ public class UsersAuthWithAnnotatedStepsTest {
 
 
     }
+
 }

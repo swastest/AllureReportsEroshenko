@@ -1,4 +1,5 @@
 package com.github;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
@@ -14,32 +15,32 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class SelenideWithListener {
 
-String REPOSITORY = "eroshenkoam/allure-example";
-        //"eroshenkoam/allure-example";"swastest/lesson_3";
-String ISSUE_NUMBER = "76";
+    String repository = "eroshenkoam/allure-example";
+    //"eroshenkoam/allure-example";"swastest/lesson_3";
+    String issueNumber = "76";
 
 
-@Severity(SeverityLevel.MINOR)
-@Owner("Kazakova")
-@Feature("Задачи в репо")
-@Story("Просмотр Issue")
-@BeforeAll
-     static void setUp(){
-    Configuration.browserSize ="1920x1080";
- //   Configuration.holdBrowserOpen = true;
-    SelenideLogger.addListener("allure", new AllureSelenide());
-}
-@Test
-@DisplayName("У меня нет другого Issue, sorry")
-    void WithListenerOnly (){
+    @Severity(SeverityLevel.MINOR)
+    @Owner("Kazakova")
+    @Feature("Задачи в репо")
+    @Story("Просмотр Issue")
+    @BeforeAll
+    static void setUp() {
+        Configuration.browserSize = "1920x1080";
+        //   Configuration.holdBrowserOpen = true;
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
 
-    Selenide.open("https://github.com/");
-    $(".header-search-input").setValue(REPOSITORY).submit();
-    $(By.linkText(REPOSITORY)).click(); // простой поиск элемента по тексту
-    $(By.partialLinkText("Issues")).click(); // поиск по частичному тексту
-    $(withText("#" + ISSUE_NUMBER)).should(Condition.exist);
+    @Test
+    @DisplayName("У меня нет другого Issue, sorry")
+    void withListenerOnly() {
+
+        Selenide.open("https://github.com/");
+        $(".header-search-input").setValue(repository).submit();
+        $(By.linkText(repository)).click(); // простой поиск элемента по тексту
+        $(By.partialLinkText("Issues")).click(); // поиск по частичному тексту
+        $(withText("#" + issueNumber)).should(Condition.exist);
 
 
-
-}
+    }
 }

@@ -20,9 +20,9 @@ import static io.qameta.allure.Allure.step;
 
 public class SelenideWithLambda {
 
-String REPOSITORY = "eroshenkoam/allure-example";
+String repository = "eroshenkoam/allure-example";
         //"eroshenkoam/allure-example";"swastest/lesson_3";
-String ISSUE_NUMBER = "76";
+String issueNumber = "76";
 
 
 @Severity(SeverityLevel.MINOR)
@@ -37,25 +37,25 @@ String ISSUE_NUMBER = "76";
 }
 @Test
 @DisplayName("Тест с лямбдой Гит")
-    void WithListenerOnly (){
+    void withListenerOnly (){
 
     step ("Открыть главную страницу", () -> {
         Selenide.open("https://github.com/");
     });
 
-    step ("Найти репозиторий в поиске " +REPOSITORY, () ->{
-        $(".header-search-input").setValue(REPOSITORY).submit();
+    step ("Найти репозиторий в поиске " +repository, () ->{
+        $(".header-search-input").setValue(repository).submit();
     });
 
-    step ("Выбрать репозиторий " + REPOSITORY, ()-> {
-        $(By.linkText(REPOSITORY)).click(); // простой поиск элемента по тексту
+    step ("Выбрать репозиторий " + repository, ()-> {
+        $(By.linkText(repository)).click(); // простой поиск элемента по тексту
     });
 
   step ("Посмотреть Issues", ()->{
       $(By.partialLinkText("Issues")).click(); // поиск по частичному тексту
   });
-   step ("Проверка ISSUE_NUMBER # " +ISSUE_NUMBER, ()-> {
-       $(withText("#" + ISSUE_NUMBER)).should(Condition.exist);
+   step ("Проверка ISSUE_NUMBER # " +issueNumber, ()-> {
+       $(withText("#" + issueNumber)).should(Condition.exist);
 
        //Сделать аттач формат html
        Allure.getLifecycle().addAttachment(
